@@ -1,14 +1,26 @@
+"use client";
+
 import { ReactNode } from 'react';
 import { MuiThemeProvider } from './theme-provider';
+import { store } from "@/store/store";
+import { Provider } from 'react-redux';
 
+import { Box } from '@mui/material';
+import Navbar from '@/components/Navbar';
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <body>
-        <MuiThemeProvider>
-          {children}
-        </MuiThemeProvider>
+        <Provider store={store}>
+          <MuiThemeProvider>
+            <Box>
+              <Navbar />
+              <Box sx={{ mt: 2, px: 2 }}>{children}</Box>
+            </Box>
+          </MuiThemeProvider>
+        </Provider>
+
       </body>
     </html>
   );
-}
+} 
