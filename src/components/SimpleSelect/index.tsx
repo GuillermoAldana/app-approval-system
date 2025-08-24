@@ -4,16 +4,19 @@ import { useState, ChangeEvent } from "react";
 import { TextField, MenuItem, Box } from "@mui/material";
 interface ISimpleSelectProps {
     list: { id: number; name: string }[];
-    handleChange: () => void;
+    value: string;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    errors: boolean;
 }
-const SimpleSelect = ({ list, handleChange }: ISimpleSelectProps) => {
+const SimpleSelect = ({ value, list, handleChange, errors }: ISimpleSelectProps) => {
 
     return (
         <Box >
             <TextField
                 select
-                value={list}
+                value={Number(value)}
                 onChange={handleChange}
+                helperText={errors ? "Campo obligatorio" : ""}
                 fullWidth
             >
                 {list.map((type) => (

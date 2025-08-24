@@ -15,57 +15,20 @@ import { IRequestType } from "@/features/types";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectedRequestTypes, setRequestTypes } from "@/features/RequestType";
 import SimpleSelect from "../SimpleSelect";
+import { useForm } from "@/hook/useForm";
 
 interface IRequestForm {
     types: IRequestType[]
 }
 export const RequestForm = ({ types }: IRequestForm) => {
     const dispatch = useAppDispatch();
-    const { data } = useAppSelector(selectedRequestTypes)
+    const { data } = useAppSelector(selectedRequestTypes);
+
+    //consumo acciones desde hook
+    const { handleSubmit, formData, handleChange, errors } = useForm();
+
+    //guardo tipos en redux
     useEffect(() => { dispatch(setRequestTypes(types)) }, []);
-
-    const [formData, setFormData] = useState({
-        requester: "",
-        title: "",
-        description: "",
-        amount: "",
-    });
-
-    const [errors, setErrors] = useState({
-        requester: false,
-        title: false,
-        description: false,
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-        setErrors({
-            ...errors,
-            [e.target.name]: false,
-        });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        const newErrors = {
-            requester: formData.requester === "",
-            title: formData.title === "",
-            description: formData.description === "",
-        };
-
-        setErrors(newErrors);
-
-        if (Object.values(newErrors).some((err) => err)) return;
-
-        console.log("📩 Solicitud enviada:", formData);
-        alert("Solicitud enviada correctamente 🚀");
-
-        setFormData({ requester: "", title: "", description: "", amount: "" });
-    };
 
     return (
         <Box display="flex" justifyContent="center" alignItems="center" p={4}>
@@ -113,7 +76,7 @@ export const RequestForm = ({ types }: IRequestForm) => {
 
                             <Grid size={12}>
                                 <Typography variant="caption" color="initial">Tipo de solicitud</Typography>
-                                <SimpleSelect list={data} handleChange={() => { }}></SimpleSelect>
+                                <SimpleSelect list={data} value={formData.type} errors={errors.type} handleChange={handleChange}></SimpleSelect>
                             </Grid>
 
                             <Grid size={12}>
