@@ -1,0 +1,1 @@
+## En esta seccion se registran carpetas con slices de redux para guardar datos en estados.
