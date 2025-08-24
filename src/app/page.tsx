@@ -1,7 +1,8 @@
 'use client';
 
-import StatusCard from '@/components/Status';
-import { Box, Button, Typography } from '@mui/material';
+import StatusCard from '@/components/Request/Content/Status';
+import TableRequest from '@/components/Request/Content/Table';
+import { Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/navigation';
 
@@ -35,6 +36,7 @@ const Page = () => {
         </Grid>
       </Grid>
       <StatusCard />
+      <TableRequest />
     </>
   );
 };

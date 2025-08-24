@@ -1,4 +1,4 @@
-import RequestForm from "@/components/Request";
+import RequestForm from "@/components/Request/Form";
 
 
 const ApprovalRequest = async () => {
