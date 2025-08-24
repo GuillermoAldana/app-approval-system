@@ -1,25 +1,41 @@
 'use client';
 
-import { Box, Button, Grid, Typography } from '@mui/material';
+import StatusCard from '@/components/Status';
+import { Box, Button, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const router = useRouter();
+
   const handleClick = () => {
-    router.push("/ApprovalRequest");
-  }
+    router.push("/approvals");
+  };
+
   return (
-    <Box sx={{ m: 6 }}>
-      <Grid container spacing={2} alignItems={'center'}>
-        <Grid size={8}>
-          <Typography variant="h3" color="initial" fontWeight={500}>Sistema de aprobacion</Typography>
+    <>
+      <Grid container alignItems="center">
+        <Grid size={{ xs: 12, md: 8 }}>
+          <Typography variant="h4" fontWeight={500}>
+            Sistema de Aprobación
+          </Typography>
+          <Typography variant="h6" color='#737373' fontWeight={400} fontSize={'1rem'}>
+            Gestiona y supervisa todas las solicitudes de aprobación de manera eficiente.
+          </Typography>
         </Grid>
-        <Grid size={4}>
-          <Button variant='contained' onClick={handleClick}>Crear una nueva solicitud</Button>
+        <Grid
+          size={{ xs: 12, md: 4 }}
+          display="flex"
+          justifyContent={{ xs: "flex-start", md: "flex-end" }}
+          mt={{ xs: 2, md: 0 }}
+        >
+          <Button variant="contained" onClick={handleClick}>
+            + Crear una nueva solicitud
+          </Button>
         </Grid>
       </Grid>
-
-    </Box>
+      <StatusCard />
+    </>
   );
 };
 

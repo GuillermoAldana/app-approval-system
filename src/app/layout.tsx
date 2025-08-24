@@ -15,7 +15,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <MuiThemeProvider>
             <Box>
               <Navbar />
-              <Box sx={{ mt: 2, px: 2 }}>{children}</Box>
+              <Box
+                sx={{
+                  m: 6,
+                  maxWidth: 1200,
+                  mx: "auto"
+                }}
+              >{children}</Box>
             </Box>
           </MuiThemeProvider>
         </Provider>
