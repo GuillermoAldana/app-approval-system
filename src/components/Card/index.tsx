@@ -2,7 +2,7 @@ import { Card, CardContent, Grid, Typography } from "@mui/material"
 import { ReactNode } from "react";
 interface ICardStatusProps {
     title: string;
-    details: string;
+    details: number;
     mount?: string;
     icon: ReactNode;
 }

@@ -7,14 +7,16 @@ interface ISimpleSelectProps {
     value: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     errors: boolean;
+    name: string;
 }
-const SimpleSelect = ({ value, list, handleChange, errors }: ISimpleSelectProps) => {
+const SimpleSelect = ({ value, name, list, handleChange, errors }: ISimpleSelectProps) => {
 
     return (
         <Box >
             <TextField
                 select
-                value={Number(value)}
+                value={value}
+                name={name}
                 onChange={handleChange}
                 helperText={errors ? "Campo obligatorio" : ""}
                 fullWidth
