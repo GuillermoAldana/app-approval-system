@@ -1,0 +1,1 @@
+## Esta carpeta solo se registran archivos de configuracion para redux
