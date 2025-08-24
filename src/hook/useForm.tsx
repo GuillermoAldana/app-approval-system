@@ -1,6 +1,13 @@
+import { addRequest, selectedRequest } from "@/features/Form";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export const useForm = () => {
+    const dispatch = useAppDispatch();
+    const { requests } = useAppSelector(selectedRequest);
+    const [loading, setLoading] = useState(false);
+    const [toastOpen, setToastOpen] = useState(false);
     const [formData, setFormData] = useState({
         requester: "",
         title: "",
@@ -39,16 +46,24 @@ export const useForm = () => {
 
         if (Object.values(newErrors).some((err) => err)) return;
 
-        console.log("📩 Solicitud enviada:", formData);
-        alert("Solicitud enviada correctamente 🚀");
+        setLoading(true);
+
+        dispatch(addRequest({ ...formData, id: requests.length + 1, status: '1' }));
 
         setFormData({ requester: "", title: "", description: "", type: "" });
+        setTimeout(() => {
+            setLoading(false);
+            setToastOpen(true);
+        }, 1500);
     };
 
     return {
         handleChange,
         handleSubmit,
+        setToastOpen,
         formData,
-        errors
+        errors,
+        toastOpen,
+        loading,
     }
 }
